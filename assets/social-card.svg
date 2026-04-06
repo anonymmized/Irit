@@ -1,0 +1,50 @@
+<svg width="1280" height="640" viewBox="0 0 1280 640" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="60" y1="40" x2="1210" y2="600" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F7EBDD"/>
+      <stop offset="0.48" stop-color="#EAF6F1"/>
+      <stop offset="1" stop-color="#E4EBFB"/>
+    </linearGradient>
+    <linearGradient id="card" x1="486" y1="86" x2="1182" y2="538" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#132435"/>
+      <stop offset="1" stop-color="#0B1721"/>
+    </linearGradient>
+  </defs>
+  <rect width="1280" height="640" rx="28" fill="url(#bg)"/>
+  <rect x="54" y="54" width="1172" height="532" rx="28" stroke="#F8FBFF" stroke-opacity="0.6"/>
+
+  <text x="110" y="138" fill="#3E6782" font-family="'IBM Plex Sans', 'Segoe UI', sans-serif" font-size="24" font-weight="700" letter-spacing="0.08em">XRAY SSH BOOTSTRAP TOOL</text>
+  <text x="110" y="248" fill="#112334" font-family="'IBM Plex Sans', 'Segoe UI', sans-serif" font-size="92" font-weight="700">Irit</text>
+  <text x="110" y="326" fill="#506D80" font-family="'IBM Plex Sans', 'Segoe UI', sans-serif" font-size="36">
+    <tspan x="110" dy="0">Bootstrap Xray over SSH.</tspan>
+    <tspan x="110" dy="44">Keep rollback ready.</tspan>
+    <tspan x="110" dy="44">Export a clean client bundle.</tspan>
+  </text>
+
+  <rect x="104" y="470" width="162" height="48" rx="24" fill="#183652"/>
+  <text x="185" y="501" text-anchor="middle" fill="#EFF6FB" font-family="'IBM Plex Sans', 'Segoe UI', sans-serif" font-size="20" font-weight="700">doctor mode</text>
+  <rect x="282" y="470" width="148" height="48" rx="24" fill="#2A6B5C"/>
+  <text x="356" y="501" text-anchor="middle" fill="#F1FFF8" font-family="'IBM Plex Sans', 'Segoe UI', sans-serif" font-size="20" font-weight="700">rollback</text>
+
+  <rect x="472" y="84" width="708" height="472" rx="28" fill="url(#card)"/>
+  <rect x="472" y="84" width="708" height="58" rx="28" fill="#203247"/>
+  <circle cx="510" cy="113" r="7" fill="#FF9168"/>
+  <circle cx="535" cy="113" r="7" fill="#FFC068"/>
+  <circle cx="560" cy="113" r="7" fill="#63D3A3"/>
+  <text x="825" y="120" text-anchor="middle" fill="#A8BBCA" font-family="'IBM Plex Mono', monospace" font-size="22">./irit.sh --mode setup --host 203.0.113.10</text>
+
+  <text x="520" y="198" fill="#43C4FF" font-family="'IBM Plex Mono', monospace" font-size="24">[INFO]</text>
+  <text x="634" y="198" fill="#E4EEF6" font-family="'IBM Plex Mono', monospace" font-size="24">ready VLESS URI + QR + client files</text>
+
+  <text x="520" y="248" fill="#8BE9D0" font-family="'IBM Plex Mono', monospace" font-size="22">[STEP]</text>
+  <text x="634" y="248" fill="#BDD1DD" font-family="'IBM Plex Mono', monospace" font-size="22">doctor / setup / access / report</text>
+
+  <rect x="520" y="290" width="432" height="132" rx="22" fill="#102233" stroke="#1F4258"/>
+  <text x="552" y="332" fill="#8BE9D0" font-family="'IBM Plex Sans', 'Segoe UI', sans-serif" font-size="24" font-weight="700">Bundle</text>
+  <text x="552" y="368" fill="#E9F3FA" font-family="'IBM Plex Mono', monospace" font-size="19">vless-uri.txt</text>
+  <text x="552" y="396" fill="#E9F3FA" font-family="'IBM Plex Mono', monospace" font-size="19">client-template.json</text>
+  <text x="552" y="424" fill="#E9F3FA" font-family="'IBM Plex Mono', monospace" font-size="19">sing-box-client.json / mihomo-profile.yaml</text>
+
+  <text x="520" y="484" fill="#71E27B" font-family="'IBM Plex Mono', monospace" font-size="24">[OK]</text>
+  <text x="606" y="484" fill="#F0F7FB" font-family="'IBM Plex Mono', monospace" font-size="24">made for fast adoption and easy sharing</text>
+</svg>

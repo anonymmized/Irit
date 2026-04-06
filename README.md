@@ -1,31 +1,43 @@
 <div align="center">
   <img src="assets/irit-terminal.svg" alt="Irit terminal preview" width="100%" />
   <h1>Irit</h1>
-  <p><strong>Fast VLESS + REALITY provisioning over SSH with a ready-to-use client bundle.</strong></p>
+  <p><strong>Fast VLESS + REALITY provisioning over SSH with rollback, diagnostics, QR export, and a ready client bundle.</strong></p>
+  <p>
+    <a href="https://github.com/anonymmized/Irit/actions/workflows/ci.yml"><img alt="CI" src="https://img.shields.io/github/actions/workflow/status/anonymmized/Irit/ci.yml?branch=main&label=ci" /></a>
+    <a href="https://github.com/anonymmized/Irit/blob/main/LICENSE"><img alt="License" src="https://img.shields.io/github/license/anonymmized/Irit" /></a>
+    <a href="https://github.com/anonymmized/Irit/stargazers"><img alt="Stars" src="https://img.shields.io/github/stars/anonymmized/Irit?style=social" /></a>
+    <a href="https://anonymmized.github.io/Irit/"><img alt="Live page" src="https://img.shields.io/badge/pages-live-112233" /></a>
+  </p>
   <p>
     <code>SSH</code>
     <code>Xray</code>
     <code>VLESS + REALITY</code>
+    <code>Doctor Mode</code>
     <code>Rollback</code>
     <code>Artifacts</code>
+    <code>QR</code>
   </p>
 </div>
 
-> Irit is built for one practical outcome: take a clean or existing server, configure Xray fast, keep rollback ready, and return a usable VLESS link without manual parameter assembly.
+> Irit is built for one practical outcome: bootstrap a server, configure Xray fast, keep rollback ready, and return a VLESS link plus client files you can use immediately.
 
 <table>
   <tr>
-    <td width="33%" valign="top">
+    <td width="25%" valign="top">
       <h3>Fast setup</h3>
-      Provision <code>Xray + VLESS + REALITY</code> from a single SSH session with a clean interactive flow.
+      Provision <code>Xray + VLESS + REALITY</code> from a single SSH session with a clean terminal flow.
     </td>
-    <td width="33%" valign="top">
-      <h3>Safe by default</h3>
-      Create a checkpoint before changes, roll back on failure, and retry once automatically.
+    <td width="25%" valign="top">
+      <h3>Safe changes</h3>
+      Create a checkpoint before mutation, roll back on failure, and retry once automatically.
     </td>
-    <td width="33%" valign="top">
-      <h3>Useful output</h3>
-      Save the final <code>VLESS</code> URI, export client files, and download a local artifact bundle.
+    <td width="25%" valign="top">
+      <h3>Useful artifacts</h3>
+      Export URI, Xray JSON, sing-box JSON, Mihomo YAML, manifest, hints, and QR files.
+    </td>
+    <td width="25%" valign="top">
+      <h3>Better visibility</h3>
+      Use <code>doctor</code>, <code>report</code>, and <code>access</code> to inspect, recover, and reuse the deployment later.
     </td>
   </tr>
 </table>
@@ -34,22 +46,32 @@
   <img src="assets/irit-workflow.svg" alt="Irit workflow" width="100%" />
 </div>
 
-## Why Irit
+## Overview
 
-Irit is a standalone Bash tool for remote server bootstrap. It connects over SSH, detects the current Xray state, installs or rebuilds a managed configuration, and leaves you with the part that actually matters: a working VLESS link and a clean client bundle you can use right away.
+Irit is a standalone Bash orchestrator for remote `Xray` servers. It connects over `SSH`, detects the current state of the machine, installs or rebuilds an Irit-managed `VLESS + REALITY` setup, and produces a clean export bundle instead of forcing you to manually collect UUIDs, public keys, short IDs, and client parameters.
 
-## Highlights
+## Project Links
 
-- connect with either `--password` or `--identity-file`;
-- detect whether the server is fresh or already running `Xray`;
-- install Xray through the official `XTLS/Xray-install` script;
-- configure `VLESS + REALITY` with `Xray API` and traffic stats enabled;
-- create a checkpoint before changes;
-- roll back automatically and retry once if setup fails;
-- inspect a running server with a detailed `report` mode;
-- recover the saved VLESS access data later via `access`;
-- download the client bundle into local `artifacts/...`;
-- optionally copy the final VLESS URI to the clipboard with `--copy-uri`.
+- GitHub repository: `https://github.com/anonymmized/Irit`
+- GitHub Pages landing: `https://anonymmized.github.io/Irit/`
+- Launch playbook: [LAUNCH_KIT.md](LAUNCH_KIT.md)
+- Contributor guide: [CONTRIBUTING.md](CONTRIBUTING.md)
+- Security policy: [SECURITY.md](SECURITY.md)
+- Roadmap: [ROADMAP.md](ROADMAP.md)
+- Changelog: [CHANGELOG.md](CHANGELOG.md)
+
+## What Makes It Better
+
+- password-based SSH and `--identity-file` support;
+- separate `--sudo-password` for non-root users that authenticate with SSH keys;
+- `doctor` mode for non-destructive diagnostics;
+- `setup`, `reconfigure`, `report`, `access`, and `rollback` modes;
+- automatic checkpoint creation before changes;
+- automatic rollback and one retry on failure;
+- local artifact download after setup or access recovery;
+- QR export for the VLESS URI;
+- colored terminal summaries and cleaner deployment output;
+- richer client bundle with multiple profile formats.
 
 ## Quick Start
 
@@ -60,7 +82,7 @@ chmod +x irit.sh fastserver.sh
 ./irit.sh
 ```
 
-The legacy launch path still works:
+Legacy direct invocation still works:
 
 ```bash
 bash fastserver.sh
@@ -72,7 +94,13 @@ Provision a new server with password authentication:
 ./irit.sh --mode setup --user root --host 203.0.113.10 --password 'secret' --copy-uri
 ```
 
-Recover client access from an existing Irit-managed server with an SSH key:
+Inspect a server before changing anything:
+
+```bash
+./irit.sh --mode doctor --user root --host 203.0.113.10 --identity-file ~/.ssh/id_ed25519
+```
+
+Recover saved client access from an existing Irit-managed server:
 
 ```bash
 ./irit.sh --mode access --user root --host 203.0.113.10 --identity-file ~/.ssh/id_ed25519
@@ -83,10 +111,11 @@ Recover client access from an existing Irit-managed server with an SSH key:
 | Mode | Purpose |
 | --- | --- |
 | `auto` | Detect the current server state and suggest the safest next action |
+| `doctor` | Run non-destructive diagnostics for tools, ports, exports, and Xray health |
 | `setup` | Install or fully replace the current Xray config with an Irit-managed config |
 | `reconfigure` | Rebuild the current Irit-managed configuration |
 | `report` | Print a detailed diagnostic report for the server and Xray |
-| `access` | Print the saved VLESS URI and refresh the exported client bundle |
+| `access` | Rebuild and print the saved VLESS access bundle |
 | `rollback` | Restore the latest checkpoint created by Irit |
 
 ## What Irit Configures
@@ -104,28 +133,29 @@ By default, Irit builds one primary inbound with:
 
 It also:
 
-- enables `stats` and `api` for later traffic reporting;
+- enables `stats` and `api` for reporting and traffic sampling;
 - generates and stores `UUID`, `x25519` keys, and `shortId`;
 - applies a `bbr` sysctl profile;
 - opens the inbound port in `ufw` when `ufw` is active;
-- stores managed metadata for later `access` recovery.
+- stores metadata for later `access` recovery;
+- exports QR assets for the generated VLESS URI when `qrencode` is available.
 
-## What You Get After Setup
+## Deployment Flow
+
+1. Connect over `SSH`.
+2. Detect whether the server is fresh, managed, or already running Xray.
+3. Create a checkpoint before mutation.
+4. Install or reconfigure `Xray + VLESS + REALITY`.
+5. Generate and download the client bundle.
+6. Reuse `report`, `doctor`, `access`, or `rollback` later when needed.
+
+## Client Bundle
 
 Server-side bundle location:
 
 ```text
-/var/lib/fastserver-orchestrator/exports
+/var/lib/irit-orchestrator/exports
 ```
-
-Generated files:
-
-| File | Purpose |
-| --- | --- |
-| `vless-uri.txt` | Final ready-to-use VLESS URI |
-| `client-access.txt` | Human-readable connection summary |
-| `client-template.json` | JSON outbound template for Xray-based clients |
-| `connection-summary.txt` | Compact plain-text summary of the generated access data |
 
 Local bundle location:
 
@@ -133,11 +163,27 @@ Local bundle location:
 ./artifacts/<host>-<timestamp>/
 ```
 
-You can change that with `--artifact-dir` or disable the local download with `--no-download`.
+You can change the local destination with `--artifact-dir` or disable the local download with `--no-download`.
+
+### Bundle files
+
+| File | Purpose |
+| --- | --- |
+| `vless-uri.txt` | Final ready-to-use VLESS URI |
+| `client-access.txt` | Human-readable access summary |
+| `connection-summary.txt` | Compact plain-text summary of the deployment |
+| `client-template.json` | Xray outbound template |
+| `sing-box-client.json` | sing-box client profile |
+| `mihomo-profile.yaml` | Mihomo / Clash Meta style profile |
+| `manifest.json` | Structured machine-readable export metadata |
+| `import-hints.txt` | Quick import instructions |
+| `vless-uri-qr.txt` | Terminal-friendly QR text |
+| `vless-uri-qr.svg` | SVG QR code |
+| `vless-uri-qr.png` | PNG QR code |
 
 ## Typical Workflows
 
-### 1. Provision a new server and get the link immediately
+### 1. Provision a new server and copy the URI immediately
 
 ```bash
 ./irit.sh --mode setup --user root --host 203.0.113.10 --password 'secret' --copy-uri
@@ -150,19 +196,33 @@ What happens:
 - creates a checkpoint;
 - installs Xray if required;
 - builds the `VLESS + REALITY` config;
-- restarts the service;
-- saves the VLESS URI;
-- downloads the local client bundle.
+- verifies the listener;
+- saves the export bundle;
+- downloads the local artifacts.
 
-### 2. Recover the saved VLESS URI later
+### 2. Run diagnostics before touching the machine
+
+```bash
+./irit.sh --mode doctor --user root --host 203.0.113.10 --identity-file ~/.ssh/id_ed25519
+```
+
+This mode checks:
+
+- installed tools;
+- Xray presence and systemd state;
+- desired listen/API port usage;
+- DNS resolution for the configured destination;
+- checkpoint and export status.
+
+### 3. Recover access from a server that was already deployed by Irit
 
 ```bash
 ./irit.sh --mode access --user root --host 203.0.113.10 --identity-file ~/.ssh/id_ed25519
 ```
 
-This is useful when the server was already provisioned by Irit and you want the saved access bundle again without rebuilding the config.
+This rebuilds the managed bundle, prints the saved VLESS URI again, and restores the local artifacts if downloads are enabled.
 
-### 3. Inspect the current server state
+### 4. Inspect a running server in detail
 
 ```bash
 ./irit.sh --mode report --user root --host 203.0.113.10 --password 'secret'
@@ -170,17 +230,17 @@ This is useful when the server was already provisioned by Irit and you want the 
 
 The report includes:
 
-- system overview;
+- host and system overview;
 - Xray version and service state;
-- current ports and REALITY parameters;
-- configured users;
+- config-derived listen/API/REALITY data;
 - active client connections;
+- configured users;
 - per-user traffic sampling;
-- recent checkpoints;
+- checkpoints and export state;
 - SSH sessions;
 - recent `journalctl` warnings.
 
-### 4. Roll back a failed setup
+### 5. Roll back a failed or unwanted change
 
 ```bash
 ./irit.sh --mode rollback --user root --host 203.0.113.10 --password 'secret'
@@ -193,6 +253,7 @@ The report includes:
 | `--user USER` | SSH username |
 | `--host HOST` | Server IP or hostname |
 | `--password PASSWORD` | SSH password |
+| `--sudo-password PASSWORD` | Sudo password when SSH auth uses a key or differs from the SSH password |
 | `--identity-file PATH` | SSH private key instead of password |
 | `--port SSH_PORT` | SSH port |
 | `--listen-port PORT` | Inbound `VLESS + REALITY` port |
@@ -203,8 +264,10 @@ The report includes:
 | `--public-host HOST` | Host to embed into the client URI |
 | `--sample-seconds N` | Sampling duration for report speed stats |
 | `--artifact-dir DIR` | Local directory for downloaded artifacts |
+| `--state-root DIR` | Custom remote root for checkpoints and exports |
 | `--no-download` | Skip local bundle download |
 | `--copy-uri` | Try to copy the final VLESS URI to the clipboard |
+| `--no-qr` | Disable QR asset generation and terminal QR output |
 | `--force-setup` | Force reconfiguration when using `auto` |
 | `--yes` | Skip confirmation prompts |
 | `--no-color` | Disable colored terminal output |
@@ -216,9 +279,9 @@ The report includes:
 - `bash`
 - `ssh`
 - `scp`
-- `mktemp`
 - `tar`
-- `sshpass` when password authentication is used
+- `mktemp`
+- `sshpass` when password-based SSH authentication is used
 
 ### Remote server
 
@@ -249,4 +312,4 @@ The report includes:
 
 ## Project Goal
 
-Irit exists for a single focused workflow: bootstrap a server for `VLESS + REALITY`, keep rollback available, and hand back a usable access link plus client files with as little manual work as possible.
+Irit exists for one focused workflow: bootstrap a server for `VLESS + REALITY`, preserve rollback, and hand back a usable access link plus clean client files with as little manual work as possible.

@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Launch kit
+    url: https://github.com/anonymmized/Irit/blob/main/LAUNCH_KIT.md
+    about: Read the launch and positioning guide for the project

@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Irit • Fast VLESS + REALITY provisioning over SSH</title>
+    <meta
+      name="description"
+      content="Bootstrap Xray + VLESS + REALITY over SSH with rollback, diagnostics, QR export, and a ready client bundle."
+    />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="page">
+      <header class="hero">
+        <div class="hero-copy">
+          <div class="eyebrow">Bash • SSH • Xray • VLESS + REALITY</div>
+          <h1>Irit</h1>
+          <p class="tagline">
+            Bootstrap Xray over SSH, keep rollback ready, and get a usable VLESS
+            link with client files in one flow.
+          </p>
+          <div class="cta-row">
+            <a class="button primary" href="https://github.com/anonymmized/Irit">View on GitHub</a>
+            <a class="button secondary" href="https://github.com/anonymmized/Irit#quick-start">Quick Start</a>
+          </div>
+          <div class="install-card">
+            <div class="install-label">Quick launch</div>
+            <code>./irit.sh --mode setup --user root --host 203.0.113.10 --password 'secret'</code>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <img src="../assets/irit-terminal.svg" alt="Irit terminal preview" />
+        </div>
+      </header>
+
+      <section class="feature-grid">
+        <article class="feature-card">
+          <h2>Fast setup</h2>
+          <p>Provision VLESS + REALITY from one SSH session with a cleaner terminal UX.</p>
+        </article>
+        <article class="feature-card">
+          <h2>Safer changes</h2>
+          <p>Create checkpoints, roll back on failure, and retry once automatically.</p>
+        </article>
+        <article class="feature-card">
+          <h2>Useful bundle</h2>
+          <p>Export URI, JSON configs, YAML profile, manifest, hints, and QR assets.</p>
+        </article>
+        <article class="feature-card">
+          <h2>Real diagnostics</h2>
+          <p>Use doctor, report, access, and rollback modes to manage the server later.</p>
+        </article>
+      </section>
+
+      <section class="workflow">
+        <div class="section-head">
+          <span>How it works</span>
+          <h2>One script, one SSH run, one clean output bundle</h2>
+        </div>
+        <img src="../assets/irit-workflow.svg" alt="Irit workflow" />
+      </section>
+
+      <section class="bundle">
+        <div class="section-head">
+          <span>Bundle</span>
+          <h2>Useful artifacts, not just a raw URI</h2>
+        </div>
+        <div class="bundle-grid">
+          <div class="bundle-item">vless-uri.txt</div>
+          <div class="bundle-item">client-template.json</div>
+          <div class="bundle-item">sing-box-client.json</div>
+          <div class="bundle-item">mihomo-profile.yaml</div>
+          <div class="bundle-item">manifest.json</div>
+          <div class="bundle-item">import-hints.txt</div>
+          <div class="bundle-item">vless-uri-qr.svg</div>
+          <div class="bundle-item">vless-uri-qr.png</div>
+        </div>
+      </section>
+
+      <section class="closing">
+        <div>
+          <span>Why it converts</span>
+          <h2>Irit solves an immediate operational problem.</h2>
+          <p>
+            People do not have to manually build UUID-based client links, remember
+            public keys, or reassemble configuration pieces from scratch. The value
+            is visible fast, which makes the project easier to share and easier to adopt.
+          </p>
+        </div>
+        <a class="button primary" href="https://github.com/anonymmized/Irit">Star the repository</a>
+      </section>
+    </div>
+  </body>
+</html>
