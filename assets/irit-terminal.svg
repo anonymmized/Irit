@@ -1,71 +1,129 @@
 <svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <linearGradient id="bg" x1="140" y1="80" x2="1450" y2="840" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#F6E7D8"/>
-      <stop offset="0.45" stop-color="#E5F3EE"/>
-      <stop offset="1" stop-color="#DCE8F7"/>
+    <linearGradient id="bg" x1="78" y1="68" x2="1490" y2="860" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F8ECDD"/>
+      <stop offset="0.48" stop-color="#EAF6F1"/>
+      <stop offset="1" stop-color="#E3EBFB"/>
     </linearGradient>
-    <linearGradient id="card" x1="330" y1="150" x2="1250" y2="750" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#11202E"/>
-      <stop offset="1" stop-color="#0B1721"/>
+    <radialGradient id="glowA" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(286 698) rotate(38.6) scale(344 270)">
+      <stop stop-color="#6AC9B1" stop-opacity="0.22"/>
+      <stop offset="1" stop-color="#6AC9B1" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowB" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1326 174) rotate(21.4) scale(260 220)">
+      <stop stop-color="#F6B57A" stop-opacity="0.24"/>
+      <stop offset="1" stop-color="#F6B57A" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="heroCard" x1="98" y1="530" x2="430" y2="770" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF" stop-opacity="0.84"/>
+      <stop offset="1" stop-color="#F6FBFF" stop-opacity="0.72"/>
     </linearGradient>
-    <linearGradient id="accent" x1="1110" y1="190" x2="1330" y2="330" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#FFB86A"/>
-      <stop offset="1" stop-color="#FF7A59"/>
+    <linearGradient id="terminal" x1="488" y1="118" x2="1462" y2="804" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#122233"/>
+      <stop offset="0.52" stop-color="#0D1A27"/>
+      <stop offset="1" stop-color="#09131D"/>
     </linearGradient>
-    <filter id="shadow" x="248" y="109" width="1104" height="682" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+    <linearGradient id="terminalTop" x1="488" y1="118" x2="1462" y2="188" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#203246"/>
+      <stop offset="1" stop-color="#19293A"/>
+    </linearGradient>
+    <linearGradient id="accentWarm" x1="1204" y1="298" x2="1382" y2="416" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFC07A"/>
+      <stop offset="1" stop-color="#FF9366"/>
+    </linearGradient>
+    <linearGradient id="accentCool" x1="1204" y1="450" x2="1404" y2="648" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1E3346"/>
+      <stop offset="1" stop-color="#112131"/>
+    </linearGradient>
+    <filter id="shadow" x="432" y="86" width="1084" height="744" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
       <feFlood flood-opacity="0" result="BackgroundImageFix"/>
       <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
       <feOffset dy="18"/>
-      <feGaussianBlur stdDeviation="26"/>
+      <feGaussianBlur stdDeviation="28"/>
       <feComposite in2="hardAlpha" operator="out"/>
-      <feColorMatrix type="matrix" values="0 0 0 0 0.0509804 0 0 0 0 0.0823529 0 0 0 0 0.121569 0 0 0 0.18 0"/>
+      <feColorMatrix type="matrix" values="0 0 0 0 0.0470588 0 0 0 0 0.0823529 0 0 0 0 0.12549 0 0 0 0.22 0"/>
       <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_1_1"/>
       <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_1_1" result="shape"/>
     </filter>
   </defs>
 
   <rect width="1600" height="900" fill="url(#bg)"/>
-  <circle cx="1380" cy="168" r="124" fill="#FFB86A" fill-opacity="0.18"/>
-  <circle cx="210" cy="728" r="166" fill="#2AA986" fill-opacity="0.12"/>
-  <circle cx="1296" cy="726" r="180" fill="#5B8DEF" fill-opacity="0.12"/>
+  <rect x="72" y="72" width="1456" height="756" rx="36" stroke="#F8FBFF" stroke-opacity="0.55"/>
+  <circle cx="286" cy="698" r="246" fill="url(#glowA)"/>
+  <circle cx="1326" cy="174" r="188" fill="url(#glowB)"/>
 
-  <text x="120" y="142" fill="#10212F" font-family="'IBM Plex Sans', 'Segoe UI', sans-serif" font-size="72" font-weight="700">Irit</text>
-  <text x="120" y="190" fill="#39586D" font-family="'IBM Plex Sans', 'Segoe UI', sans-serif" font-size="28">Fast VLESS + REALITY provisioning with a clean client bundle</text>
+  <g opacity="0.32">
+    <path d="M78 250H430" stroke="#CAD9E5"/>
+    <path d="M78 286H430" stroke="#CAD9E5"/>
+    <path d="M78 322H430" stroke="#CAD9E5"/>
+    <path d="M78 358H430" stroke="#CAD9E5"/>
+  </g>
+
+  <text x="110" y="138" fill="#3A617B" font-family="'IBM Plex Sans', 'Segoe UI', sans-serif" font-size="24" font-weight="600" letter-spacing="0.08em">SSH BOOTSTRAP FOR XRAY</text>
+  <text x="110" y="228" fill="#102334" font-family="'IBM Plex Sans', 'Segoe UI', sans-serif" font-size="98" font-weight="700">Irit</text>
+  <text x="110" y="290" fill="#476478" font-family="'IBM Plex Sans', 'Segoe UI', sans-serif" font-size="34">
+    <tspan x="110" dy="0">Fast VLESS + REALITY</tspan>
+    <tspan x="110" dy="42">provisioning over SSH.</tspan>
+  </text>
+
+  <g>
+    <rect x="110" y="366" width="134" height="44" rx="22" fill="#113049"/>
+    <text x="138" y="394" fill="#E9F3FA" font-family="'IBM Plex Sans', 'Segoe UI', sans-serif" font-size="19" font-weight="600">rollback</text>
+    <rect x="258" y="366" width="118" height="44" rx="22" fill="#246A59"/>
+    <text x="287" y="394" fill="#ECFFF7" font-family="'IBM Plex Sans', 'Segoe UI', sans-serif" font-size="19" font-weight="600">bundle</text>
+  </g>
+
+  <g>
+    <rect x="110" y="522" width="316" height="208" rx="28" fill="url(#heroCard)" stroke="#D4DFE8"/>
+    <text x="144" y="576" fill="#172838" font-family="'IBM Plex Sans', 'Segoe UI', sans-serif" font-size="31" font-weight="700">What you get</text>
+    <text x="144" y="624" fill="#4E6A7D" font-family="'IBM Plex Sans', 'Segoe UI', sans-serif" font-size="22">
+      <tspan x="144" dy="0">Ready VLESS URI</tspan>
+      <tspan x="144" dy="38">Local artifact bundle</tspan>
+      <tspan x="144" dy="38">Checkpoint before changes</tspan>
+      <tspan x="144" dy="38">Readable report after setup</tspan>
+    </text>
+  </g>
 
   <g filter="url(#shadow)">
-    <rect x="300" y="150" width="1000" height="580" rx="28" fill="url(#card)"/>
-    <rect x="300" y="150" width="1000" height="60" rx="28" fill="#15293A"/>
-    <circle cx="344" cy="180" r="8" fill="#FF7A59"/>
-    <circle cx="372" cy="180" r="8" fill="#FFB86A"/>
-    <circle cx="400" cy="180" r="8" fill="#2AA986"/>
-    <text x="452" y="188" fill="#9EB6C8" font-family="'IBM Plex Mono', 'SFMono-Regular', monospace" font-size="24">./irit.sh --mode setup --host 203.0.113.10</text>
+    <rect x="488" y="118" width="972" height="656" rx="30" fill="url(#terminal)"/>
+    <rect x="488" y="118" width="972" height="72" rx="30" fill="url(#terminalTop)"/>
+    <circle cx="530" cy="154" r="8" fill="#FF8F67"/>
+    <circle cx="558" cy="154" r="8" fill="#FFC067"/>
+    <circle cx="586" cy="154" r="8" fill="#62D3A2"/>
+    <text x="628" y="162" fill="#A7BACA" font-family="'IBM Plex Mono', 'SFMono-Regular', monospace" font-size="25">./irit.sh --mode setup --host 203.0.113.10 --copy-uri</text>
 
-    <text x="352" y="262" fill="#46C1FF" font-family="'IBM Plex Mono', 'SFMono-Regular', monospace" font-size="26">[INFO]</text>
-    <text x="454" y="262" fill="#DCE7F0" font-family="'IBM Plex Mono', 'SFMono-Regular', monospace" font-size="26">Selected mode: setup</text>
+    <line x1="548" y1="228" x2="548" y2="706" stroke="#1E3950" stroke-width="4" stroke-linecap="round"/>
 
-    <text x="352" y="312" fill="#7EE7D0" font-family="'IBM Plex Mono', 'SFMono-Regular', monospace" font-size="26">== Deployment Plan ==</text>
-    <text x="352" y="356" fill="#A8C0D2" font-family="'IBM Plex Mono', 'SFMono-Regular', monospace" font-size="24">Target:      root@203.0.113.10:22</text>
-    <text x="352" y="392" fill="#A8C0D2" font-family="'IBM Plex Mono', 'SFMono-Regular', monospace" font-size="24">Listen port: 443</text>
-    <text x="352" y="428" fill="#A8C0D2" font-family="'IBM Plex Mono', 'SFMono-Regular', monospace" font-size="24">Dest:        www.cloudflare.com:443</text>
-    <text x="352" y="464" fill="#A8C0D2" font-family="'IBM Plex Mono', 'SFMono-Regular', monospace" font-size="24">Client:      iphone-16</text>
+    <text x="576" y="252" fill="#41C4FF" font-family="'IBM Plex Mono', 'SFMono-Regular', monospace" font-size="25">[INFO]</text>
+    <text x="684" y="252" fill="#E2EEF6" font-family="'IBM Plex Mono', 'SFMono-Regular', monospace" font-size="25">Connected to root@203.0.113.10</text>
 
-    <text x="352" y="534" fill="#6BE675" font-family="'IBM Plex Mono', 'SFMono-Regular', monospace" font-size="26">[OK]</text>
-    <text x="428" y="534" fill="#E8F2F9" font-family="'IBM Plex Mono', 'SFMono-Regular', monospace" font-size="26">Setup completed</text>
+    <text x="576" y="296" fill="#8DE9D0" font-family="'IBM Plex Mono', 'SFMono-Regular', monospace" font-size="23">[STEP]</text>
+    <text x="684" y="296" fill="#BFD1DD" font-family="'IBM Plex Mono', 'SFMono-Regular', monospace" font-size="23">Checking root or sudo access</text>
 
-    <text x="352" y="584" fill="#7EE7D0" font-family="'IBM Plex Mono', 'SFMono-Regular', monospace" font-size="26">== Client Access ==</text>
-    <text x="352" y="626" fill="#A8C0D2" font-family="'IBM Plex Mono', 'SFMono-Regular', monospace" font-size="24">Public host: 203.0.113.10</text>
-    <text x="352" y="662" fill="#A8C0D2" font-family="'IBM Plex Mono', 'SFMono-Regular', monospace" font-size="24">Bundle:      ./artifacts/203.0.113.10-20260406/</text>
-    <text x="352" y="706" fill="#FFCF87" font-family="'IBM Plex Mono', 'SFMono-Regular', monospace" font-size="20">vless://3f1c...@203.0.113.10:443?security=reality&amp;pbk=...</text>
+    <text x="576" y="338" fill="#8DE9D0" font-family="'IBM Plex Mono', 'SFMono-Regular', monospace" font-size="23">[STEP]</text>
+    <text x="684" y="338" fill="#BFD1DD" font-family="'IBM Plex Mono', 'SFMono-Regular', monospace" font-size="23">Preparing Xray and REALITY config</text>
 
-    <rect x="1086" y="244" width="170" height="112" rx="20" fill="url(#accent)"/>
-    <text x="1120" y="288" fill="#25150C" font-family="'IBM Plex Sans', 'Segoe UI', sans-serif" font-size="18" font-weight="700">rollback ready</text>
-    <text x="1120" y="320" fill="#25150C" font-family="'IBM Plex Mono', 'SFMono-Regular', monospace" font-size="18">checkpoint</text>
+    <rect x="576" y="378" width="566" height="184" rx="22" fill="#0F2130" stroke="#1C3C53"/>
+    <text x="608" y="422" fill="#88E4C9" font-family="'IBM Plex Sans', 'Segoe UI', sans-serif" font-size="26" font-weight="700">Deployment Plan</text>
+    <text x="608" y="462" fill="#AFC6D6" font-family="'IBM Plex Mono', 'SFMono-Regular', monospace" font-size="22">Target      root@203.0.113.10:22</text>
+    <text x="608" y="496" fill="#AFC6D6" font-family="'IBM Plex Mono', 'SFMono-Regular', monospace" font-size="22">Listen port 443</text>
+    <text x="608" y="530" fill="#AFC6D6" font-family="'IBM Plex Mono', 'SFMono-Regular', monospace" font-size="22">Dest        www.cloudflare.com:443</text>
 
-    <rect x="1066" y="420" width="190" height="144" rx="20" fill="#0E2534" stroke="#1F3F54"/>
-    <text x="1100" y="462" fill="#9EB6C8" font-family="'IBM Plex Sans', 'Segoe UI', sans-serif" font-size="18">bundle files</text>
-    <text x="1100" y="502" fill="#E8F2F9" font-family="'IBM Plex Mono', 'SFMono-Regular', monospace" font-size="18">vless-uri.txt</text>
-    <text x="1100" y="534" fill="#E8F2F9" font-family="'IBM Plex Mono', 'SFMono-Regular', monospace" font-size="18">client-access.txt</text>
-    <text x="1100" y="566" fill="#E8F2F9" font-family="'IBM Plex Mono', 'SFMono-Regular', monospace" font-size="18">client-template.json</text>
+    <rect x="1180" y="378" width="226" height="118" rx="22" fill="url(#accentWarm)"/>
+    <text x="1212" y="426" fill="#2B170D" font-family="'IBM Plex Sans', 'Segoe UI', sans-serif" font-size="24" font-weight="700">checkpoint</text>
+    <text x="1212" y="458" fill="#2B170D" font-family="'IBM Plex Mono', 'SFMono-Regular', monospace" font-size="18">rollback available</text>
+
+    <rect x="1180" y="520" width="226" height="138" rx="22" fill="url(#accentCool)" stroke="#26465E"/>
+    <text x="1212" y="564" fill="#D8E8F3" font-family="'IBM Plex Sans', 'Segoe UI', sans-serif" font-size="24" font-weight="700">bundle files</text>
+    <text x="1212" y="602" fill="#F2F8FC" font-family="'IBM Plex Mono', 'SFMono-Regular', monospace" font-size="18">vless-uri.txt</text>
+    <text x="1212" y="632" fill="#F2F8FC" font-family="'IBM Plex Mono', 'SFMono-Regular', monospace" font-size="18">client-access.txt</text>
+
+    <text x="576" y="606" fill="#72E27C" font-family="'IBM Plex Mono', 'SFMono-Regular', monospace" font-size="25">[OK]</text>
+    <text x="660" y="606" fill="#F0F7FB" font-family="'IBM Plex Mono', 'SFMono-Regular', monospace" font-size="25">Setup completed</text>
+
+    <rect x="576" y="642" width="830" height="92" rx="18" fill="#102233" stroke="#214760"/>
+    <text x="608" y="678" fill="#8DE9D0" font-family="'IBM Plex Sans', 'Segoe UI', sans-serif" font-size="22" font-weight="700">Client Access</text>
+    <text x="608" y="710" fill="#FFCF87" font-family="'IBM Plex Mono', 'SFMono-Regular', monospace" font-size="19">
+      <tspan x="608" dy="0">vless://3f1c...@203.0.113.10:443?security=reality&amp;pbk=...&amp;sid=...</tspan>
+    </text>
   </g>
 </svg>
