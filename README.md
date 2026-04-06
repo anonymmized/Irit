@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="assets/irit-terminal.svg" alt="Irit terminal preview" width="100%" />
+  <img src="assets/irit-terminal.jpeg" alt="Irit terminal preview" width="100%" />
   <h1>Irit</h1>
   <p><strong>Fast VLESS + REALITY provisioning over SSH with rollback, diagnostics, QR export, and a ready client bundle.</strong></p>
   <p>
@@ -43,7 +43,7 @@
 </table>
 
 <div align="center">
-  <img src="assets/irit-workflow.svg" alt="Irit workflow" width="100%" />
+  <img src="assets/irit-workflow.jpeg" alt="Irit workflow" width="100%" />
 </div>
 
 ## Overview
@@ -305,8 +305,8 @@ The report includes:
 ├── irit.sh
 ├── fastserver.sh
 ├── assets/
-│   ├── irit-terminal.svg
-│   └── irit-workflow.svg
+│   ├── irit-terminal.jpeg
+│   └── irit-workflow.jpeg
 └── README.md
 ```
 
