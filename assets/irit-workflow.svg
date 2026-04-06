@@ -1,0 +1,87 @@
+<svg width="1600" height="860" viewBox="0 0 1600 860" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg2" x1="180" y1="60" x2="1400" y2="780" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F7F1E7"/>
+      <stop offset="0.55" stop-color="#EDF7F4"/>
+      <stop offset="1" stop-color="#E8EFFA"/>
+    </linearGradient>
+    <linearGradient id="connect" x1="160" y1="250" x2="382" y2="430" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#155E75"/>
+      <stop offset="1" stop-color="#0F3E50"/>
+    </linearGradient>
+    <linearGradient id="detect" x1="448" y1="250" x2="670" y2="430" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#2A7F62"/>
+      <stop offset="1" stop-color="#1D5744"/>
+    </linearGradient>
+    <linearGradient id="deploy" x1="736" y1="250" x2="958" y2="430" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#B96830"/>
+      <stop offset="1" stop-color="#8A4519"/>
+    </linearGradient>
+    <linearGradient id="bundle" x1="1024" y1="250" x2="1246" y2="430" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#5A63C8"/>
+      <stop offset="1" stop-color="#39439C"/>
+    </linearGradient>
+    <linearGradient id="report" x1="1312" y1="250" x2="1534" y2="430" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#C7527A"/>
+      <stop offset="1" stop-color="#8E3250"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1600" height="860" fill="url(#bg2)"/>
+  <text x="120" y="138" fill="#132433" font-family="'IBM Plex Sans', 'Segoe UI', sans-serif" font-size="62" font-weight="700">How Irit works</text>
+  <text x="120" y="188" fill="#4C677A" font-family="'IBM Plex Sans', 'Segoe UI', sans-serif" font-size="28">One script, one SSH session, one clear bundle with the final VLESS URI</text>
+
+  <line x1="330" y1="342" x2="470" y2="342" stroke="#8AA6B8" stroke-width="10" stroke-linecap="round"/>
+  <line x1="618" y1="342" x2="758" y2="342" stroke="#8AA6B8" stroke-width="10" stroke-linecap="round"/>
+  <line x1="906" y1="342" x2="1046" y2="342" stroke="#8AA6B8" stroke-width="10" stroke-linecap="round"/>
+  <line x1="1194" y1="342" x2="1334" y2="342" stroke="#8AA6B8" stroke-width="10" stroke-linecap="round"/>
+
+  <g>
+    <rect x="120" y="240" width="210" height="210" rx="28" fill="url(#connect)"/>
+    <text x="152" y="294" fill="#DFF6FF" font-family="'IBM Plex Sans', 'Segoe UI', sans-serif" font-size="24" font-weight="700">1. Connect</text>
+    <text x="152" y="334" fill="#E8F2F9" font-family="'IBM Plex Mono', 'SFMono-Regular', monospace" font-size="18">SSH password</text>
+    <text x="152" y="366" fill="#E8F2F9" font-family="'IBM Plex Mono', 'SFMono-Regular', monospace" font-size="18">or identity file</text>
+    <text x="152" y="410" fill="#A8C0D2" font-family="'IBM Plex Sans', 'Segoe UI', sans-serif" font-size="18">Fast entry, no manual</text>
+    <text x="152" y="438" fill="#A8C0D2" font-family="'IBM Plex Sans', 'Segoe UI', sans-serif" font-size="18">copy-paste session setup</text>
+  </g>
+
+  <g>
+    <rect x="408" y="240" width="210" height="210" rx="28" fill="url(#detect)"/>
+    <text x="440" y="294" fill="#E8FFF6" font-family="'IBM Plex Sans', 'Segoe UI', sans-serif" font-size="24" font-weight="700">2. Detect</text>
+    <text x="440" y="334" fill="#F3FFFB" font-family="'IBM Plex Mono', 'SFMono-Regular', monospace" font-size="18">root or sudo</text>
+    <text x="440" y="366" fill="#F3FFFB" font-family="'IBM Plex Mono', 'SFMono-Regular', monospace" font-size="18">fresh or existing Xray</text>
+    <text x="440" y="410" fill="#C9EBDD" font-family="'IBM Plex Sans', 'Segoe UI', sans-serif" font-size="18">Safer auto mode with</text>
+    <text x="440" y="438" fill="#C9EBDD" font-family="'IBM Plex Sans', 'Segoe UI', sans-serif" font-size="18">clear action selection</text>
+  </g>
+
+  <g>
+    <rect x="696" y="240" width="210" height="210" rx="28" fill="url(#deploy)"/>
+    <text x="728" y="294" fill="#FFF3E7" font-family="'IBM Plex Sans', 'Segoe UI', sans-serif" font-size="24" font-weight="700">3. Deploy</text>
+    <text x="728" y="334" fill="#FFF6EF" font-family="'IBM Plex Mono', 'SFMono-Regular', monospace" font-size="18">install Xray</text>
+    <text x="728" y="366" fill="#FFF6EF" font-family="'IBM Plex Mono', 'SFMono-Regular', monospace" font-size="18">generate keys and UUID</text>
+    <text x="728" y="410" fill="#FFD8BE" font-family="'IBM Plex Sans', 'Segoe UI', sans-serif" font-size="18">Checkpoint, rollback and</text>
+    <text x="728" y="438" fill="#FFD8BE" font-family="'IBM Plex Sans', 'Segoe UI', sans-serif" font-size="18">one automatic retry</text>
+  </g>
+
+  <g>
+    <rect x="984" y="240" width="210" height="210" rx="28" fill="url(#bundle)"/>
+    <text x="1016" y="294" fill="#EEF0FF" font-family="'IBM Plex Sans', 'Segoe UI', sans-serif" font-size="24" font-weight="700">4. Bundle</text>
+    <text x="1016" y="334" fill="#F3F5FF" font-family="'IBM Plex Mono', 'SFMono-Regular', monospace" font-size="18">vless-uri.txt</text>
+    <text x="1016" y="366" fill="#F3F5FF" font-family="'IBM Plex Mono', 'SFMono-Regular', monospace" font-size="18">client-template.json</text>
+    <text x="1016" y="410" fill="#D6D9FF" font-family="'IBM Plex Sans', 'Segoe UI', sans-serif" font-size="18">Remote export folder and</text>
+    <text x="1016" y="438" fill="#D6D9FF" font-family="'IBM Plex Sans', 'Segoe UI', sans-serif" font-size="18">local artifacts download</text>
+  </g>
+
+  <g>
+    <rect x="1272" y="240" width="210" height="210" rx="28" fill="url(#report)"/>
+    <text x="1304" y="294" fill="#FFEAF1" font-family="'IBM Plex Sans', 'Segoe UI', sans-serif" font-size="24" font-weight="700">5. Report</text>
+    <text x="1304" y="334" fill="#FFF2F6" font-family="'IBM Plex Mono', 'SFMono-Regular', monospace" font-size="18">traffic and users</text>
+    <text x="1304" y="366" fill="#FFF2F6" font-family="'IBM Plex Mono', 'SFMono-Regular', monospace" font-size="18">warnings and sessions</text>
+    <text x="1304" y="410" fill="#FFD0DD" font-family="'IBM Plex Sans', 'Segoe UI', sans-serif" font-size="18">Saved VLESS URI can be</text>
+    <text x="1304" y="438" fill="#FFD0DD" font-family="'IBM Plex Sans', 'Segoe UI', sans-serif" font-size="18">recovered later via access</text>
+  </g>
+
+  <rect x="120" y="560" width="1360" height="170" rx="28" fill="#FFFFFF" fill-opacity="0.72" stroke="#D3E0EA"/>
+  <text x="168" y="624" fill="#1B3141" font-family="'IBM Plex Sans', 'Segoe UI', sans-serif" font-size="28" font-weight="700">Result</text>
+  <text x="168" y="668" fill="#39586D" font-family="'IBM Plex Sans', 'Segoe UI', sans-serif" font-size="24">Irit is optimized for one practical outcome: configure the server fast, keep rollback ready, and return a usable VLESS link with files you can open immediately.</text>
+</svg>

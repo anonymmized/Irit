@@ -1,46 +1,215 @@
-# FastServer
+# Irit
 
-`fastserver.sh` is a standalone bash orchestrator for remote Xray servers.
+![Irit terminal preview](assets/irit-terminal.svg)
 
-What it does:
+`Irit` это автономный bash-инструмент для быстрого поднятия `Xray + VLESS + REALITY` на удалённом сервере по `SSH`, получения готовой `VLESS`-ссылки и сохранения клиентского набора файлов как на сервере, так и локально.
 
-- asks for `user`, `host`, and `password`;
-- connects over SSH and uses `sudo` when needed;
-- installs `VLESS + REALITY + Xray` on Ubuntu/Debian;
-- creates a checkpoint before changes;
-- runs rollback and retries once on failure;
-- for an existing Xray server, prints a report with configured users, current and cumulative traffic, active connections, network speed, SSH sessions, and `journalctl` warnings.
+![Irit workflow](assets/irit-workflow.svg)
 
-Run:
+## Что умеет Irit
+
+- подключается к серверу по `SSH` через пароль или `--identity-file`;
+- автоматически определяет, свежий сервер перед ним или уже установленный `Xray`;
+- устанавливает `Xray` через официальный `XTLS/Xray-install`;
+- настраивает `VLESS + REALITY` с `Xray API` и статистикой;
+- создаёт checkpoint перед изменениями;
+- делает rollback и одну автоматическую повторную попытку при неудачной установке;
+- показывает расширенный отчёт по серверу: `Xray`, пользователи, трафик, скорость, активные подключения, SSH-сессии, предупреждения из `journalctl`;
+- умеет отдельно восстанавливать и печатать сохранённую `VLESS`-ссылку через режим `access`;
+- выгружает клиентский bundle в локальную папку `artifacts/...`;
+- умеет копировать `VLESS`-ссылку в буфер обмена через `--copy-uri`, если доступен `pbcopy`, `wl-copy` или `xclip`.
+
+## Быстрый старт
+
+Рекомендуемый входной файл:
+
+```bash
+chmod +x irit.sh fastserver.sh
+./irit.sh
+```
+
+Совместимый старый запуск тоже работает:
 
 ```bash
 bash fastserver.sh
 ```
 
-Useful modes:
+Пример для нового сервера по паролю:
 
 ```bash
-bash fastserver.sh --mode report --user root --host 203.0.113.10
-bash fastserver.sh --mode setup --user root --host 203.0.113.10
-bash fastserver.sh --mode rollback --user root --host 203.0.113.10
+./irit.sh --mode setup --user root --host 203.0.113.10 --password 'secret'
 ```
 
-Local requirements:
+Пример для уже настроенного сервера по SSH-ключу:
+
+```bash
+./irit.sh --mode access --user root --host 203.0.113.10 --identity-file ~/.ssh/id_ed25519 --copy-uri
+```
+
+## Режимы работы
+
+| Режим | Что делает |
+| --- | --- |
+| `auto` | Определяет состояние сервера и предлагает безопасное действие |
+| `setup` | Ставит или полностью заменяет конфиг на `Irit`-managed конфиг |
+| `reconfigure` | Пересобирает текущую конфигурацию `Irit` |
+| `report` | Показывает диагностический отчёт по серверу и `Xray` |
+| `access` | Печатает сохранённую `VLESS`-ссылку и обновляет экспорт клиента |
+| `rollback` | Возвращает сервер к последнему checkpoint |
+
+## Что именно настраивается
+
+По умолчанию `Irit` поднимает один основной inbound:
+
+- протокол: `VLESS`;
+- транспорт: `tcp`;
+- безопасность: `REALITY`;
+- порт клиента: `443`;
+- локальный `Xray API`: `10085`;
+- destination для `REALITY`: `www.cloudflare.com:443`;
+- `serverNames`: по умолчанию берётся из `--dest`;
+- основной клиент: `client-1@irit.local`.
+
+Скрипт также:
+
+- включает `stats` и `api`, чтобы потом можно было строить отчёты по пользователям;
+- создаёт и сохраняет `UUID`, `x25519` ключи и `shortId`;
+- включает sysctl-профиль с `bbr`;
+- открывает порт в `ufw`, если `ufw` активен;
+- сохраняет служебную metadata для последующего режима `access`.
+
+## Что вы получаете после настройки
+
+На сервере создаётся bundle в:
+
+```text
+/var/lib/fastserver-orchestrator/exports
+```
+
+Внутри лежат:
+
+- `vless-uri.txt` — готовая `VLESS`-ссылка;
+- `client-access.txt` — сводка по подключению;
+- `client-template.json` — шаблон outbound-конфига для клиента на базе `Xray`;
+- `connection-summary.txt` — удобная текстовая памятка.
+
+Локально этот bundle автоматически скачивается в:
+
+```text
+./artifacts/<host>-<timestamp>/
+```
+
+Это можно изменить через `--artifact-dir`, а отключить через `--no-download`.
+
+## Основные параметры
+
+| Параметр | Назначение |
+| --- | --- |
+| `--user USER` | SSH-пользователь |
+| `--host HOST` | IP или домен сервера |
+| `--password PASSWORD` | SSH-пароль |
+| `--identity-file PATH` | SSH-ключ вместо пароля |
+| `--port SSH_PORT` | SSH-порт |
+| `--listen-port PORT` | Порт входящего `VLESS + REALITY` |
+| `--api-port PORT` | Порт локального `Xray API` |
+| `--dest HOST:PORT` | Целевой TLS destination для `REALITY` |
+| `--server-names CSV` | `serverNames` для `REALITY` |
+| `--client-email EMAIL` | Имя или label клиента |
+| `--public-host HOST` | Хост, который попадёт в клиентскую ссылку |
+| `--sample-seconds N` | Длительность сэмпла для отчёта по скорости |
+| `--artifact-dir DIR` | Куда складывать локальный bundle |
+| `--no-download` | Не скачивать bundle локально |
+| `--copy-uri` | Попробовать скопировать `VLESS`-ссылку в буфер |
+| `--force-setup` | В `auto` режиме перейти к переустановке |
+| `--yes` | Не задавать подтверждающие вопросы |
+| `--no-color` | Отключить цветной вывод |
+
+## Типовые сценарии
+
+### 1. Быстро поднять новый сервер и сразу получить ссылку
+
+```bash
+./irit.sh --mode setup --user root --host 203.0.113.10 --password 'secret' --copy-uri
+```
+
+Что произойдёт:
+
+- `Irit` подключится по `SSH`;
+- проверит `sudo` или `root`;
+- создаст checkpoint;
+- поставит `Xray`;
+- соберёт конфиг `VLESS + REALITY`;
+- перезапустит сервис;
+- сохранит `VLESS`-ссылку;
+- скачает bundle локально.
+
+### 2. Позже снова получить свою `VLESS`-ссылку
+
+```bash
+./irit.sh --mode access --user root --host 203.0.113.10 --identity-file ~/.ssh/id_ed25519
+```
+
+Этот режим особенно полезен, если сервер уже был развёрнут через `Irit`, а ссылку нужно достать повторно.
+
+### 3. Проверить состояние сервера
+
+```bash
+./irit.sh --mode report --user root --host 203.0.113.10 --password 'secret'
+```
+
+Отчёт включает:
+
+- общее состояние сервера;
+- версию и статус `Xray`;
+- текущий порт и `REALITY`-параметры;
+- настроенных пользователей;
+- активные клиентские подключения;
+- скорость и суммарный трафик;
+- последние checkpoint;
+- SSH-сессии;
+- предупреждения `journalctl`.
+
+### 4. Откатить неудачную настройку
+
+```bash
+./irit.sh --mode rollback --user root --host 203.0.113.10 --password 'secret'
+```
+
+## Локальные зависимости
 
 - `bash`
 - `ssh`
 - `scp`
-- `sshpass`
+- `mktemp`
+- `sshpass` если используется парольная авторизация
 
-Remote requirements:
+## Требования к серверу
 
-- Ubuntu or Debian
-- root or `sudo`
-- internet access on the server to download Xray
+- `Ubuntu` или `Debian`;
+- доступ `root` или рабочий `sudo`;
+- интернет на сервере для установки `Xray`;
+- открытый доступ к выбранному клиентскому порту.
 
-Notes and limits:
+## Важные замечания
 
-- the installer path is based on the official `XTLS/Xray-install` project;
-- the automatic setup currently manages one primary `VLESS + REALITY` inbound;
-- precise per-user traffic stats require the script-managed config because it enables `Xray API` and `stats`;
-- reporting tries to stay careful with pre-existing third-party configs, but `reconfigure` replaces the config with one managed by this script.
+- `report` умеет читать существующий `Xray`, даже если он не был поставлен через `Irit`;
+- режим `access` требует, чтобы конфигурация ранее была создана именно `Irit`, потому что он использует сохранённую metadata;
+- скрипт управляет одним основным inbound и одним основным клиентом;
+- при повторной настройке `reconfigure` конфиг `Xray` заменяется на управляемый `Irit` вариант;
+- `Irit` не трогает сторонние изменения вне своей зоны ответственности, но `setup` и `reconfigure` сознательно перезаписывают основной конфиг `Xray`.
+
+## Структура проекта
+
+```text
+.
+├── irit.sh
+├── fastserver.sh
+├── assets/
+│   ├── irit-terminal.svg
+│   └── irit-workflow.svg
+└── README.md
+```
+
+## Идея проекта
+
+`Irit` нужен для одного практичного сценария: взять чистый сервер, быстро подготовить его под `VLESS + REALITY`, не остаться без отката и сразу получить пригодную к использованию ссылку и клиентские файлы без ручной сборки параметров.
